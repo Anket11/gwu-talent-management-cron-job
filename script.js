@@ -3,12 +3,11 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
-const cron = require("node-cron");
 const express = require("express");
 const app = express();
 const JOB_PORTAL_URL =
   "https://gwu-studentemployment.peopleadmin.com/postings/search?utf8=%E2%9C%93&query=&query_v0_posted_at_date=&1387%5B%5D=5&1389%5B%5D=1&commit=Search";
-const DATA_FILE = "jobs.json";
+
 const mongoose = require("mongoose");
 const Job = require("./models/Job");
 async function saveJobs(jobs) {
@@ -83,12 +82,6 @@ async function fetchJobListings() {
   }
 }
 
-function loadPreviousJobs() {
-  if (fs.existsSync(DATA_FILE)) {
-    return JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
-  }
-  return [];
-}
 
 
 async function sendEmailNotification(newJobs) {
