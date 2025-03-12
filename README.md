@@ -1,7 +1,7 @@
 # Colonial Careers - Job Scraper and Notifier
 
 ## Overview
-Colonial Careers is a **Node.js application** that scrapes the GWU Student Employment portal, stores job postings in a **MongoDB database**, and notifies users via **email** when new job postings are available. The project runs on an **Express.js server** and can be triggered manually via an API endpoint.
+Colonial Careers is a **Node.js application** that scrapes the GWU Student Employment portal, stores job postings in a **MongoDB database**, and notifies users via **email** when new job postings are available. The project runs on an **Express.js server** and can be triggered manually via an API endpoint. (Only works for Non FWS and Foggy Bottom campus)
 
 ## Features
 - **Scrapes job listings** from the GWU job portal
@@ -89,7 +89,6 @@ The script runs periodically using `cron-job`. It is currently configured to run
 - The job portal structure may have changed—update the **Cheerio selectors**.
 
 ## Future Enhancements
-- Add a **frontend dashboard** to display jobs.
 - Allow users to **subscribe** to job alerts with custom filters.
 - Implement **Twilio SMS notifications**.
 - Deploy as a **Docker container** for easier deployment.
