@@ -122,3 +122,4 @@ async function checkForNewJobs() {
 
 // Automatically run checkForNewJobs when the script is executed
 checkForNewJobs();
+process.exit();
