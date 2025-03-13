@@ -105,7 +105,7 @@ async function checkForNewJobs() {
   console.log("Checking for new jobs...");
   const currentJobs = await fetchJobListings();
   const previousJobs = await Job.find({});
-
+  console.log(currentJobs);
   const previousJobTitles = new Set(previousJobs.map((job) => job.title));
   const newJobs = currentJobs.filter(
     (job) => !previousJobTitles.has(job.title)
@@ -120,6 +120,7 @@ async function checkForNewJobs() {
   }
 }
 
-// Automatically run checkForNewJobs when the script is executed
-checkForNewJobs();
-process.exit();
+checkForNewJobs().then(() => process.exit()).catch(err => {
+  console.error('Error:', err);
+  process.exit(1);
+});
