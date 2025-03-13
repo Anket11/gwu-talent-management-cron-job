@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16 # Ensures compatibility with your local setup
+          node-version: '20.x' # Ensures compatibility with your local setup
 
       - name: Verify Node.js version
         run: node -v
