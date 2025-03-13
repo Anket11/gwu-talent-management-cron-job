@@ -119,7 +119,7 @@ const newJobs = currentJobs.filter(
 
 if (newJobs.length > 0) {
   console.log("New jobs found! Saving to database and sending email...");
-  await saveJobs(newJobs); // Save only new jobs, not all
+  await saveJobs(currentJobs); // Save only new jobs, not all
   await sendEmailNotification(newJobs);
 } else {
   console.log("No new jobs found.");

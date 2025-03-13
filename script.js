@@ -104,21 +104,28 @@ async function sendEmailNotification(newJobs) {
 
 async function checkForNewJobs() {
   console.log("Checking for new jobs...");
-  const currentJobs = await fetchJobListings();
-  const previousJobs = await Job.find({});
+const currentJobs = await fetchJobListings();
+const previousJobs = await Job.find({});
+console.log(currentJobs.length);
+console.log(previousJobs.length);
 
-  const previousJobTitles = new Set(previousJobs.map((job) => job.title));
-  const newJobs = currentJobs.filter(
-    (job) => !previousJobTitles.has(job.title)
-  );
+// Create a set of existing job identifiers (e.g., title + link)
+const previousJobIdentifiers = new Set(
+  previousJobs.map((job) => `${job.title}-${job.link}`)
+);
 
-  if (newJobs.length > 0) {
-    console.log("New jobs found! Saving to database and sending email...");
-    await saveJobs(currentJobs);
-    await sendEmailNotification(newJobs);
-  } else {
-    console.log("No new jobs found.");
-  }
+const newJobs = currentJobs.filter(
+  (job) => !previousJobIdentifiers.has(`${job.title}-${job.link}`)
+);
+
+if (newJobs.length > 0) {
+  console.log("New jobs found! Saving to database and sending email...");
+  await saveJobs(currentJobs); // Save only new jobs, not all
+  await sendEmailNotification(newJobs);
+} else {
+  console.log("No new jobs found.");
+}
+
 }
 
 // Function to print all job listings
