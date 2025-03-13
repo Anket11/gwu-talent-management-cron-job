@@ -2,7 +2,7 @@ name: Check for New Jobs
 
 on:
   schedule:
-    - cron: "*/1 * * * *" # Runs every 15 minutes
+    - cron: "*/15 * * * *" # Runs every 15 minutes
   workflow_dispatch: # Allows manual triggering
 
 jobs:
@@ -16,7 +16,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.3.1 # Change this if you use a different Node.js version
+          node-version: 20.3.1 # Ensures compatibility with your local setup
+
+      - name: Verify Node.js version
+        run: node -v
 
       - name: Install dependencies
         run: npm install
@@ -26,4 +29,4 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-        run: node cronScript.js # Replace with the actual filename
+        run: node cronScript.js # Ensure this is the correct script filename
