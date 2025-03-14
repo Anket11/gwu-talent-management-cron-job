@@ -86,7 +86,7 @@ async function fetchJobListings() {
 async function sendEmailNotification(newJobs) {
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
+    to: "samarthshete1420@gmail.com, patelkaran.tech@gmail.com, abhibhardwaj427@gmail.com, patilanket11@gmail.com",
     subject: "New Job Posting Alert - GWU",
     text: `New job postings:\n\n${newJobs
       .map((job) => `${job.title}\n${job.link}\n`)
@@ -100,6 +100,7 @@ async function sendEmailNotification(newJobs) {
     console.error("Error sending email:", error);
   }
 }
+
 
 async function checkForNewJobs() {
   console.log("Checking for new jobs...");
