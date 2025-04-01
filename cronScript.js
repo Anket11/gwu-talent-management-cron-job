@@ -85,7 +85,7 @@ async function fetchJobListings() {
 
 async function sendEmailNotification(newJobs) {
   const recipients = process.env.EMAIL_RECIPIENTS;
-
+  
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: recipients,
