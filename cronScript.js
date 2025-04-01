@@ -85,10 +85,11 @@ async function fetchJobListings() {
 
 async function sendEmailNotification(newJobs) {
   const recipients = process.env.EMAIL_RECIPIENTS;
-  
+
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: recipients,
+    to: "patilanket11@gmail.com",
+    bcc: recipients,
     subject: "New Job Posting Alert - GWU Talent Management",
     text: `New job postings:\n\n${newJobs
       .map((job) => `${job.title}\n${job.link}\n`)
