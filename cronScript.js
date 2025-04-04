@@ -84,7 +84,7 @@ async function fetchJobListings() {
 }
 
 async function sendEmailNotification(newJobs) {
-  const recipients = process.env.EMAIL_RECIPIENTS?.split(',').map(email => email.trim());
+  const recipients = JSON.parse(process.env.EMAIL_RECIPIENTS);
   console.log(recipients);
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -106,7 +106,7 @@ async function sendEmailNotification(newJobs) {
 
 
 async function checkForNewJobs() {
-  const recipients = process.env.EMAIL_RECIPIENTS?.split(',').map(email => email.trim());
+  const recipients = JSON.parse(process.env.EMAIL_RECIPIENTS);
   console.log(recipients);
   console.log("Checking for new jobs...");
 const currentJobs = await fetchJobListings();
